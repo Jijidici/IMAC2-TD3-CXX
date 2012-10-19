@@ -13,6 +13,7 @@ class VectorD{
 		
 		double getACoordonnee(int id);
 		void setACoordonnee(int id, double iCoord);
+		int getNbCoord();
 		
 		void display();
 		float getNorm();
@@ -21,5 +22,7 @@ class VectorD{
 		
 		~VectorD();
 };
+
+void saveAVectorD(VectorD &vector_tab, char* file_path);
 
 #endif

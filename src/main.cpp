@@ -26,6 +26,8 @@ int main(int argc, char** argv){
 	std::cout<<">> Norme de V1 ["<<v1.getNorm()<<"]"<<std::endl;
 	std::cout<<">> Norme de V2 ["<<v2.getNorm()<<"]"<<std::endl;
 	
+	saveAVectorD(v1, "vector_data.txt");
+	saveAVectorD(v2, "vector_data.txt");
 	
 	return EXIT_SUCCESS;
 }

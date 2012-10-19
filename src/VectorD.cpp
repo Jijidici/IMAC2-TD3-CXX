@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 #include <cmath>
 #include "VectorD.hpp"
 
@@ -74,6 +75,10 @@ void VectorD::display(){
 	std::cout<<std::endl;
 }
 
+int VectorD::getNbCoord(){
+	return this->nb_coord;
+}
+
 float VectorD::getNorm(){
 	float norm_result = 0;
 	int i=0;
@@ -116,4 +121,29 @@ VectorD::~VectorD(){
 	delete[] this->coordonnee;
 	this->coordonnee = NULL;
 	std::cout<<"I broke it! Violently!!!"<<std::endl;
+}
+
+/*///////////////////////////////////////////////////////////////////////*/
+
+
+void saveAVectorD(VectorD &vector_tab, char* file_path){
+	if(file_path == NULL){
+		std::cout<<"[=> In SAVEAVECTORD function, file path is incorrect |||| Inner Value Error."<<std::endl;
+		return;
+	}
+	
+	std::ofstream fic(file_path, std::ios::out | std::ios::app);
+	if(!fic){
+		std::cout<<"[=> In SAVEAVECTORD function, file can't be loaded |||| Extern Error."<<std::endl;
+		return;
+	}
+	std::cout<<" > Fichier "<<file_path<<" is loaded"<<std::endl;
+	
+	fic<<vector_tab.getNbCoord()<<"\t";
+	for(int i=0;i<vector_tab.getNbCoord();++i){
+		fic<<vector_tab.getACoordonnee(i)<<"\t";
+	}
+	fic<<std::endl;
+	
+	fic.close();
 }
