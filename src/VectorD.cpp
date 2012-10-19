@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <string>
+#include <limits>
 #include "VectorD.hpp"
 
 VectorD::VectorD(){
@@ -43,6 +45,21 @@ VectorD::VectorD(const VectorD &v){
 	}
 	
 	std::cout<<" > Constructeur par recopie"<<std::endl;
+}
+
+void VectorD::allocateMemory(int nb_coordonnee){
+	if(nb_coordonnee < 0){
+		nb_coordonnee = 0;
+	}
+	
+	this->nb_coord = nb_coordonnee;
+	this->coordonnee = new double[this->nb_coord];
+	
+	for(int i=0;i<this->nb_coord;++i){
+		this->coordonnee[i]=0;
+	}
+	
+	std::cout<<" > Allocate "<<this->nb_coord<<" blocks of memory ."<<std::endl;
 }
 
 double VectorD::getACoordonnee(int id){
@@ -146,4 +163,51 @@ void saveAVectorD(VectorD &vector_tab, char* file_path){
 	fic<<std::endl;
 	
 	fic.close();
+}
+
+VectorD* createVectorsFromFile(char* file_path){
+	if(file_path == NULL){
+		std::cout<<"[=> In CREATEVECTORSFROMFILE function, file path is incorrect |||| Inner Value Error."<<std::endl;
+		return NULL;
+	}
+	
+	std::ifstream fic(file_path, std::ios::in);
+	if(!fic){
+		std::cout<<"[=> In SAVEAVECTORD function, file can't be loaded |||| Extern Error."<<std::endl;
+		return NULL;
+	}
+	std::cout<<" > Fichier "<<file_path<<" is loaded"<<std::endl;
+	
+	int nb_lines = 0;
+	while(1){
+		fic.ignore(std::numeric_limits<int>::max(), '\n');
+		if(fic.eof()){
+			break;
+		}
+		nb_lines++;
+	}
+	std::cout<<"||] NB LINES = "<<nb_lines<<std::endl;
+	
+	fic.clear();
+	fic.seekg(0, std::ios::beg);
+	
+	VectorD* tab_vectors = new VectorD[nb_lines];
+	
+	for(int j=0;j<nb_lines;++j){
+		int v_nb_coord = 0;
+		fic >> v_nb_coord;
+		tab_vectors[j].allocateMemory(v_nb_coord);
+		
+		std::cout<<v_nb_coord<<std::endl;
+		for(int i=0;i<v_nb_coord;++i){
+			double a_coord = 0.;
+			fic >> a_coord;
+			std::cout<<"|| "<<j+1<<"e ligne : "<<a_coord<<std::endl;
+			tab_vectors[j].setACoordonnee(i, a_coord);
+		}
+	}
+	
+	fic.close();
+	
+	return tab_vectors;
 }

@@ -11,6 +11,7 @@ class VectorD{
 		VectorD(int nb_coordonnee);
 		VectorD(const VectorD &v);
 		
+		void allocateMemory(int nb_coordonnee);
 		double getACoordonnee(int id);
 		void setACoordonnee(int id, double iCoord);
 		int getNbCoord();
@@ -24,5 +25,7 @@ class VectorD{
 };
 
 void saveAVectorD(VectorD &vector_tab, char* file_path);
+
+VectorD* createVectorsFromFile(char* file_path);
 
 #endif
