@@ -9,7 +9,7 @@ int main(int argc, char** argv){
 	VectorD v2 = v1;
 	
 	v1.setACoordonnee(1, 6.4);
-	v2.setACoordonnee(18, 6.4);
+	v2.setACoordonnee(2, 7.4);
 	v1.display();
 	v2.display();
 	

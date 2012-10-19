@@ -34,8 +34,10 @@ VectorD::VectorD(const VectorD &v){
 	this->nb_coord = v.nb_coord;
 	
 	this->coordonnee = new double[this->nb_coord];
-	for(i=0;i<this->nb_coord;++i){
-		this->coordonnee[i] = v.coordonnee[i];
+	if(this->nb_coord != 0){
+		for(i=0;i<this->nb_coord;++i){
+			this->coordonnee[i] = v.coordonnee[i];
+		}
 	}
 	
 	std::cout<<" > Constructeur par recopie"<<std::endl;
