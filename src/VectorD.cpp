@@ -13,12 +13,17 @@ VectorD::VectorD(int nb_coordonnee){
 	this->coordonnee = NULL;
 	int i =0;
 	
+	if(nb_coordonnee <= 0){
+		std::cout<<" > Valeurs d'entree incorrecte pour constructeur VectorD(size)"<<std::endl;
+		this->nb_coord = 0;
+		return;
+	}
+	
+	this->nb_coord = nb_coordonnee;
 	this->coordonnee = new double[nb_coordonnee];
 	for(i=0;i<nb_coordonnee;++i){
 		this->coordonnee[i] = 0;
 	}
-	
-	this->nb_coord = nb_coordonnee;
 	
 	std::cout<<" > Constructeur perso"<<std::endl;
 }
