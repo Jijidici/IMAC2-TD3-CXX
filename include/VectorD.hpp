@@ -16,6 +16,7 @@ class VectorD{
 		
 		void display();
 		float getNorm();
+		void normalize();
 		
 		~VectorD();
 };

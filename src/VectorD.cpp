@@ -84,6 +84,20 @@ float VectorD::getNorm(){
 	return sqrt(norm_result);
 }
 
+void VectorD::normalize(){
+	float vec_norm = this->getNorm();
+	int i = 0;
+	
+	if(vec_norm == 0){
+		std::cout<<"[=> In NORMALIZE function, vector norm is equal to 0. Math Error."<<std::endl;
+		return;
+	}
+	
+	for(i=0;i<this->nb_coord;++i){
+		this->coordonnee[i] = this->coordonnee[i]/vec_norm;
+	}
+}
+
 VectorD::~VectorD(){
 	delete[] this->coordonnee;
 	this->coordonnee = NULL;
