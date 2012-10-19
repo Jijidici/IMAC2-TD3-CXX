@@ -72,3 +72,9 @@ void VectorD::display(){
 	}
 	std::cout<<std::endl;
 }
+
+VectorD::~VectorD(){
+	delete[] this->coordonnee;
+	this->coordonnee = NULL;
+	std::cout<<"I broke it! Violently!!!"<<std::endl;
+}
