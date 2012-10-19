@@ -89,12 +89,26 @@ void VectorD::normalize(){
 	int i = 0;
 	
 	if(vec_norm == 0){
-		std::cout<<"[=> In NORMALIZE function, vector norm is equal to 0. Math Error."<<std::endl;
+		std::cout<<"[=> In NORMALIZE function, vector norm is equal to 0 |||| Math Error."<<std::endl;
 		return;
 	}
 	
 	for(i=0;i<this->nb_coord;++i){
 		this->coordonnee[i] = this->coordonnee[i]/vec_norm;
+	}
+}
+
+
+void VectorD::addWith(const VectorD &v){
+	int i = 0;
+	
+	if(this->nb_coord != v.nb_coord){
+		std::cout<<"[=> In ADDWITH function, vectors haven't got the same size |||| Math Error."<<std::endl;
+		return;
+	}
+	
+	for(i=0;i<this->nb_coord;++i){
+		this->coordonnee[i] += v.coordonnee[i];
 	}
 }
 

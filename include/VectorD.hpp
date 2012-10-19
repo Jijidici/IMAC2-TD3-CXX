@@ -17,6 +17,7 @@ class VectorD{
 		void display();
 		float getNorm();
 		void normalize();
+		void addWith(const VectorD &v);
 		
 		~VectorD();
 };
