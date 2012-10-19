@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <cmath>
 #include "VectorD.hpp"
 
 VectorD::VectorD(){
@@ -71,6 +72,16 @@ void VectorD::display(){
 		std::cout<<this->coordonnee[i]<<"\t";
 	}
 	std::cout<<std::endl;
+}
+
+float VectorD::getNorm(){
+	float norm_result = 0;
+	int i=0;
+	
+	for(i=0;i<this->nb_coord;++i){
+		norm_result += this->coordonnee[i]*this->coordonnee[i];
+	}
+	return sqrt(norm_result);
 }
 
 VectorD::~VectorD(){

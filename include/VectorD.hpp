@@ -13,7 +13,9 @@ class VectorD{
 		
 		double getACoordonnee(int id);
 		void setACoordonnee(int id, double iCoord);
+		
 		void display();
+		float getNorm();
 		
 		~VectorD();
 };
